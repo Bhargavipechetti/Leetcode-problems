@@ -1,3 +1,124 @@
+
+/*31-01-2023*/
+
+/*Symmetric Tree*/
+
+class Solution{
+    public boolean isSymmetric(TreeNode root){
+        if(root==null){
+            return true;
+        }
+        return isSymmetric(root.left,root.right);
+    }
+    public boolean isSymmetric(TreeNode leftRoot,TreeNode rightRoot){
+        if(leftRoot==null && rightRoot==null) return true;
+        else if(leftRoot==null || rightRoot==null) return false;
+
+        if(leftRoot.val!=rightRoot.val) return false;
+           if(!isSymmetric(leftRoot.left,rightRoot.right)) return false;
+
+           if(!isSymmetric(leftRoot.right,rightRoot.left)) return false;
+        return true;
+
+    }
+}
+
+/*Binary Tree Level Order Traversal*/
+
+class Solution {
+    List<List<Integer>> result;
+    public List<List<Integer>> levelOrder(TreeNode root) {
+         result = new ArrayList<>();
+         if(root == null)
+         return result;
+         traverse(root,0);
+         return result;
+    }
+    private void traverse(TreeNode node,int level){
+        if(node==null){return ;} 
+        if(result.size()==level){
+            result.add(new ArrayList<>());
+
+        }
+        result.get(level).add(node.val);
+        traverse(node.left,level+1);
+        traverse(node.right,level+1);
+    }
+
+}
+
+/*30-01-2023*/
+/*Binary tree inorder traversal*/
+ public class TreeNode {
+     int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+     TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+ }
+ 
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+    ArrayList<Integer> result = new ArrayList<>();    
+    Stack<TreeNode> stack = new Stack<>();
+ 
+    TreeNode p = root;
+    while(p!=null){
+        stack.push(p);
+        p=p.left;
+    }
+ 
+    while(!stack.isEmpty()){            
+        TreeNode t = stack.pop();
+        result.add(t.val);
+ 
+        t = t.right;
+        while(t!=null){
+            stack.push(t);
+            t = t.left;
+        }
+    }
+ 
+    return result;
+
+        
+    }
+}
+
+/*Binary tree postorder traversal*/
+class Solution {
+    public void traversal(TreeNode root, List<Integer> ans) {
+        if (root == null)
+            return;
+        if (root.left != null)
+            traversal(root.left, ans);
+        if (root.right != null)
+            traversal(root.right, ans);
+        ans.add(root.val);
+}
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<Integer>();
+        traversal(root, ans);
+        return ans;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*24-01-2023*/
 /*Palindrome Number*/
 
@@ -99,5 +220,25 @@ class Solution {
         List<Integer> ans = new ArrayList<Integer>();
         traversal(root, ans);
         return ans;
+    }
+}
+
+
+/*24-01-2023*/
+/*Length of Last word*/
+
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        int len = 0;
+        s = s.trim();
+        for (int i = s.length() - 1; i >=0; i --){
+            if (s.charAt(i) == ' '){
+                break;
+            }
+            else{
+                len ++;
+            }
+        }
+        return len;
     }
 }
