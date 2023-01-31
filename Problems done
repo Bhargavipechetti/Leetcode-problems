@@ -49,18 +49,6 @@ class Solution {
 
 /*30-01-2023*/
 /*Binary tree inorder traversal*/
- public class TreeNode {
-     int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
-     TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-          this.left = left;
-          this.right = right;
-      }
- }
  
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
@@ -109,14 +97,43 @@ class Solution {
 }
 
 
+/*28-01-2023*/
+/*Two sum*/
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (target==nums[i]+nums[j]) {
+                    return new int[] { i, j };
+                }
+            }
+        }
+        return null;
+    }
+}
 
 
 
 
 
+/*24-01-2023*/
+/*Length of Last word*/
 
-
-
+public class Solution {
+    public int lengthOfLastWord(String s) {
+        int len = 0;
+        s = s.trim();
+        for (int i = s.length() - 1; i >=0; i --){
+            if (s.charAt(i) == ' '){
+                break;
+            }
+            else{
+                len ++;
+            }
+        }
+        return len;
+    }
+}
 
 
 /*24-01-2023*/
@@ -140,105 +157,5 @@ class Solution {
         }else{
             return false;
         }
-    }
-}
-
-
-
-
-/*28-01-2023*/
-/*Two sum*/
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                if (target==nums[i]+nums[j]) {
-                    return new int[] { i, j };
-                }
-            }
-        }
-        return null;
-    }
-}
-
-
-
-/*30-01-2023*/
- public class TreeNode {
-     int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
-     TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-          this.left = left;
-          this.right = right;
-      }
- }
- 
-class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
-    ArrayList<Integer> result = new ArrayList<>();    
-    Stack<TreeNode> stack = new Stack<>();
- 
-    TreeNode p = root;
-    while(p!=null){
-        stack.push(p);
-        p=p.left;
-    }
- 
-    while(!stack.isEmpty()){            
-        TreeNode t = stack.pop();
-        result.add(t.val);
- 
-        t = t.right;
-        while(t!=null){
-            stack.push(t);
-            t = t.left;
-        }
-    }
- 
-    return result;
-
-        
-    }
-}
-
-/*postorder traversal*/
-class Solution {
-    public void traversal(TreeNode root, List<Integer> ans) {
-        if (root == null)
-            return;
-        if (root.left != null)
-            traversal(root.left, ans);
-        if (root.right != null)
-            traversal(root.right, ans);
-        ans.add(root.val);
-}
-    public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> ans = new ArrayList<Integer>();
-        traversal(root, ans);
-        return ans;
-    }
-}
-
-
-/*24-01-2023*/
-/*Length of Last word*/
-
-public class Solution {
-    public int lengthOfLastWord(String s) {
-        int len = 0;
-        s = s.trim();
-        for (int i = s.length() - 1; i >=0; i --){
-            if (s.charAt(i) == ' '){
-                break;
-            }
-            else{
-                len ++;
-            }
-        }
-        return len;
     }
 }
