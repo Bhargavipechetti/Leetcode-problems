@@ -1,5 +1,46 @@
 
 /*31-01-2023*/
+/*Binary Tree Zigzag Level Order Traversal*/
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> sol = new ArrayList<>();
+        travel(root, sol, 0);
+        return sol;
+    }
+    
+    private void travel(TreeNode curr, List<List<Integer>> sol, int level)
+    {
+        if(curr == null) return;
+        
+        if(sol.size() <= level)
+        {
+            List<Integer> newLevel = new LinkedList<>();
+            sol.add(newLevel);
+        }
+        
+        List<Integer> collection  = sol.get(level);
+        if(level % 2 == 0) collection.add(curr.val);
+        else collection.add(0, curr.val);
+        
+        travel(curr.left, sol, level + 1);
+        travel(curr.right, sol, level + 1);
+    }
+}
+
+
+/*Invert Binary Tree*/
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode right = invertTree(root.right);
+        TreeNode left = invertTree(root.left);
+        root.left = right;
+        root.right = left;
+        return root;
+    }
+}
 
 /*Symmetric Tree*/
 
@@ -75,6 +116,25 @@ class Solution {
     return result;
 
         
+    }
+}
+
+/*Binary tree pretorder traversal*/
+
+class Solution {
+    public void traversal(TreeNode root, List<Integer> ans) {
+        if (root == null)
+            return;
+        ans.add(root.val);
+        if (root.left != null)
+            traversal(root.left, ans);
+        if (root.right != null)
+            traversal(root.right, ans);
+    }
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<Integer>();
+        traversal(root, ans);
+        return ans;
     }
 }
 
