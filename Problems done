@@ -119,7 +119,7 @@ class Solution {
     }
 }
 
-/*Binary tree pretorder traversal*/
+/*Binary tree preorder traversal*/
 
 class Solution {
     public void traversal(TreeNode root, List<Integer> ans) {
@@ -177,6 +177,51 @@ class Solution {
 
 
 /*24-01-2023*/
+/*Roman to integer*/
+
+class Solution {
+    public int romanToInt(String s) {
+     
+        int current = 0,ans = 0,previous = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            switch(s.charAt(i)){
+                case 'I':
+                    current = 1;
+                    break;
+                case 'V':
+                    current = 5;
+                    break;
+                case 'X':
+                    current = 10;
+                    break;
+                case 'L':
+                    current = 50;
+                    break;
+                case 'C':
+                    current = 100;
+                    break;
+                case 'D':
+                    current = 500;
+                    break;
+                case 'M':
+                    current = 1000;
+                    break;
+            }
+            
+            if ( previous > current) {
+                ans -= current;
+            }else{
+                ans += current;
+                previous = current;
+            }
+           
+        }
+        return ans;
+    }
+    
+}
+
+
 /*Length of Last word*/
 
 public class Solution {
